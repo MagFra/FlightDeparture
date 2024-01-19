@@ -1,0 +1,41 @@
+﻿@using FlightDeparture.Data
+@using FlightDeparture.Models.Entities;
+@using Microsoft.AspNetCore.Components;
+@using Microsoft.EntityFrameworkCore;
+
+
+@if (departures == null)
+{
+    <p><em>Loading...</em></p>
+}
+else if (departures.Count < 1)
+{
+    <p><em>There are no future departures.</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Departure</th>
+                <th>Destination</th>
+                <th>Flight</th>
+                <th>Gate</th>
+                <th>Aircraft</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var departure in departures)
+            {
+                <tr>
+                    <td>@departure.DepartureWhen</td>
+                    <td>@departure.Destination</td>
+                    <td>@departure.Name</td>
+                    <td>@departure.Gate</td>
+                    <td>@departure.Aircraft</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
